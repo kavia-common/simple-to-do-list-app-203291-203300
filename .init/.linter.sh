@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /home/kavia/workspace/code-generation/simple-to-do-list-app-203291-203300/todo_flutter_frontend
+flutter analyze
+
