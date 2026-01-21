@@ -3,16 +3,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:todo_flutter_frontend/main.dart';
 
 void main() {
-  testWidgets('App generation message displayed', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Renders app header and input controls', (WidgetTester tester) async {
+    await tester.pumpWidget(const TodoApp());
 
-    expect(find.text('todo_flutter_frontend App is being generated...'), findsOneWidget);
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    expect(find.text('My Tasks'), findsOneWidget);
+    expect(find.text('To‑Do'), findsOneWidget);
+
+    expect(find.byType(TextField), findsOneWidget);
+    expect(find.widgetWithText(FilledButton, 'Add'), findsOneWidget);
   });
 
-  testWidgets('App bar has correct title', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Shows empty state when there are no tasks', (WidgetTester tester) async {
+    await tester.pumpWidget(const TodoApp());
 
-    expect(find.text('todo_flutter_frontend'), findsOneWidget);
+    expect(find.text('No tasks yet'), findsOneWidget);
+    expect(find.text('Add your first task above.'), findsOneWidget);
+    expect(find.byIcon(Icons.checklist_rounded), findsOneWidget);
   });
 }
